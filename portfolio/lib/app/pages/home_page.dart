@@ -8,7 +8,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF121212), // dark theme
-      body: Row(children: [const SideBar()]),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [const SideBar()],
+      ),
     );
   }
 }
