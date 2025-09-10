@@ -23,4 +23,33 @@ class TextStyling {
     fontSize: 12,
     fontWeight: FontWeight.bold,
   );
+  TextStyle mainTitle = GoogleFonts.poppins(
+    color: AppConstats.lotion,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+  TextStyle titleNamesStyle = GoogleFonts.poppins(
+    color: AppConstats.lotion,
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+  );
+  TextStyle aboutMe = GoogleFonts.poppins(
+    color: AppConstats.lotion,
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
+}
+
+class Decorations {
+  Decoration mainContainer = BoxDecoration(
+    color: AppConstats.eerieBlack,
+    border: Border(
+      top: BorderSide(color: AppConstats.onyx, width: 2),
+      left: BorderSide(color: AppConstats.onyx, width: 2),
+    ),
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(25),
+      topRight: Radius.circular(25),
+    ),
+  );
 }

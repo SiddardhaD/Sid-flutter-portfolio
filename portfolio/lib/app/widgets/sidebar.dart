@@ -75,18 +75,21 @@ class SideBar extends StatelessWidget {
                   title: AppConstats.email,
                   icon: Icons.email,
                   label: AppConstats.userEmail,
+                  action: () {},
                 ),
                 SizedBox(height: 10),
                 ProfileDetailCard(
                   title: AppConstats.phone,
                   icon: Icons.phone,
                   label: AppConstats.userphone,
+                  action: () {},
                 ),
                 SizedBox(height: 10),
                 ProfileDetailCard(
                   title: AppConstats.location,
                   icon: Icons.location_on,
                   label: AppConstats.userlocation,
+                  action: () {},
                 ),
               ],
             ),
@@ -136,11 +139,13 @@ class ProfileDetailCard extends StatelessWidget {
   final String title;
   final String label;
   final IconData icon;
+  final Function() action;
   const ProfileDetailCard({
     super.key,
     required this.icon,
     required this.label,
     required this.title,
+    required this.action,
   });
 
   @override
@@ -157,7 +162,7 @@ class ProfileDetailCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: AppConstats.blackOlive.withOpacity(0.6),
-                offset: const Offset(-6, -6),
+                offset: const Offset(-2, -2),
                 blurRadius: 10,
               ),
               BoxShadow(
@@ -182,7 +187,10 @@ class ProfileDetailCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(title, style: TextStyling().siderheading),
-            Text(label, style: TextStyling().siderAnswer),
+            InkWell(
+              onTap: action,
+              child: Text(label, style: TextStyling().siderAnswer),
+            ),
           ],
         ),
       ],
