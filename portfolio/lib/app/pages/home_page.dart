@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/widgets/mainContainer.dart';
 import 'package:portfolio/app/widgets/sidebar.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFF121212), // dark theme
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [const SideBar()],
+        children: [const SideBar(), const Maincontainer()],
       ),
     );
   }
