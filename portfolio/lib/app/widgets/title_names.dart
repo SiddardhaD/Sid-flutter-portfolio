@@ -27,7 +27,7 @@ class _TitleNamesState extends State<TitleNames> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           NamesOfIndex(ontap: () {}, lable: "RESUME"),
-          NamesOfIndex(ontap: () {}, lable: "PROJECT"),
+          NamesOfIndex(ontap: () {}, lable: "EXPERIENCE"),
           NamesOfIndex(ontap: () {}, lable: "BLOG"),
         ],
       ),

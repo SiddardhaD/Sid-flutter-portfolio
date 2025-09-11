@@ -38,6 +38,11 @@ class TextStyling {
     fontSize: 14,
     fontWeight: FontWeight.w300,
   );
+  TextStyle careerFonts = GoogleFonts.inconsolata(
+    color: AppConstats.lotion,
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
 }
 
 class Decorations {
