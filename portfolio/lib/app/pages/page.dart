@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/pages/about_me.dart';
+import 'package:portfolio/app/pages/experience.dart';
 import 'package:portfolio/app/widgets/main_title.dart';
 import 'package:portfolio/app/widgets/title_names.dart';
 
@@ -21,7 +22,8 @@ class _PageIndexState extends State<PageIndex> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [MainTitle(title: "About Me"), TitleNames()],
           ),
-          AboutMe(),
+          // AboutMe(),
+          ExperienceTimeline(),
         ],
       ),
     );
