@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_event.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
 
@@ -14,7 +17,7 @@ class _TitleNamesState extends State<TitleNames> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Container(
-      width: screenSize.width * 0.14,
+      width: screenSize.width * 0.2,
       height: 60,
       decoration: BoxDecoration(
         color: AppConstats.charlestonGreen,
@@ -26,9 +29,25 @@ class _TitleNamesState extends State<TitleNames> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          NamesOfIndex(ontap: () {}, lable: "RESUME"),
-          NamesOfIndex(ontap: () {}, lable: "EXPERIENCE"),
-          NamesOfIndex(ontap: () {}, lable: "BLOG"),
+          NamesOfIndex(
+            ontap: () {
+              context.read<NavigationBloc>().add(NavigationItemSelected(0));
+            },
+            lable: "ABOUT ME",
+          ),
+          NamesOfIndex(
+            ontap: () {
+              context.read<NavigationBloc>().add(NavigationItemSelected(1));
+            },
+            lable: "EXPERIENCE",
+          ),
+
+          NamesOfIndex(
+            ontap: () {
+              context.read<NavigationBloc>().add(NavigationItemSelected(2));
+            },
+            lable: "BLOG",
+          ),
         ],
       ),
     );

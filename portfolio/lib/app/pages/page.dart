@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/pages/about_me.dart';
 import 'package:portfolio/app/pages/experience.dart';
 import 'package:portfolio/app/widgets/main_title.dart';
@@ -20,10 +23,23 @@ class _PageIndexState extends State<PageIndex> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [MainTitle(title: "About Me"), TitleNames()],
+            children: [
+              BlocBuilder<NavigationBloc, NavigationState>(
+                builder: (context, state) {
+                  return MainTitle(
+                    title: state.selectedItem == 0 ? "About Me" : "Experience",
+                  );
+                },
+              ),
+              TitleNames(),
+            ],
           ),
-          // AboutMe(),
-          ExperienceTimeline(),
+
+          BlocBuilder<NavigationBloc, NavigationState>(
+            builder: (context, state) {
+              return state.selectedItem == 0 ? AboutMe() : ExperienceTimeline();
+            },
+          ),
         ],
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
 import 'package:portfolio/app/pages/home_page.dart';
 
 void main() {
@@ -12,7 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
+        ],
+        child: HomePage(),
+      ),
     );
   }
 }
