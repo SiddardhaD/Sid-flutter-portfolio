@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_event.dart';
+import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
 
@@ -30,12 +31,14 @@ class _TitleNamesState extends State<TitleNames> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           NamesOfIndex(
+            index: 0,
             ontap: () {
               context.read<NavigationBloc>().add(NavigationItemSelected(0));
             },
             lable: "ABOUT ME",
           ),
           NamesOfIndex(
+            index: 1,
             ontap: () {
               context.read<NavigationBloc>().add(NavigationItemSelected(1));
             },
@@ -43,6 +46,7 @@ class _TitleNamesState extends State<TitleNames> {
           ),
 
           NamesOfIndex(
+            index: 2,
             ontap: () {
               context.read<NavigationBloc>().add(NavigationItemSelected(2));
             },
@@ -56,17 +60,33 @@ class _TitleNamesState extends State<TitleNames> {
 
 class NamesOfIndex extends StatelessWidget {
   final String lable;
+  final int index;
   final Function() ontap;
-  const NamesOfIndex({super.key, required this.lable, required this.ontap});
+  const NamesOfIndex({
+    super.key,
+    required this.lable,
+    required this.ontap,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ontap,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Text(lable, style: TextStyling().titleNamesStyle),
-      ),
+    return BlocBuilder<NavigationBloc, NavigationState>(
+      builder: (context, state) {
+        return InkWell(
+          onTap: ontap,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              lable,
+              style:
+                  state.selectedItem == index
+                      ? TextStyling().titleNamesStyle
+                      : TextStyling().aboutMe.copyWith(fontSize: 12),
+            ),
+          ),
+        );
+      },
     );
   }
 }
