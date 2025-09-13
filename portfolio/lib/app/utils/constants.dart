@@ -46,6 +46,11 @@ class AppConstats {
   static const String project4Des =
       "Welcome to the Krispy Kreme® app — your easiest way to enjoy hot, fresh doughnuts and sweet rewards. Join the Krispy Kreme Rewards program to earn points with every order and unlock free treats faster than ever. Get a welcome reward, birthday surprise, and seamless pickup or delivery at your fingertips.";
 
+  //blogs
+  static const String blog1 = "assets/images/blog/blog1.png";
+  static const String blog2 = "assets/images/blog/blog2.png";
+  static const String blog3 = "assets/images/blog/blog3.png";
+
   //Colors
   static const Color eerieBlack = Color(0XFF1E1E1F);
   static const Color onyx = Color(0XFF383838);

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/pages/about_me.dart';
+import 'package:portfolio/app/pages/blog_page.dart';
 import 'package:portfolio/app/pages/experience.dart';
 import 'package:portfolio/app/widgets/main_title.dart';
 import 'package:portfolio/app/widgets/title_names.dart';
@@ -27,17 +28,30 @@ class _PageIndexState extends State<PageIndex> {
               BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (context, state) {
                   return MainTitle(
-                    title: state.selectedItem == 0 ? "About Me" : "Experience",
+                    title:
+                        state.selectedItem == 0
+                            ? "About Me"
+                            : state.selectedItem == 1
+                            ? "Experience"
+                            : state.selectedItem == 2
+                            ? "Work"
+                            : "Blog",
                   );
                 },
               ),
               TitleNames(),
             ],
           ),
-
+          // BlogPage(),
           BlocBuilder<NavigationBloc, NavigationState>(
             builder: (context, state) {
-              return state.selectedItem == 0 ? AboutMe() : ExperienceTimeline();
+              return state.selectedItem == 0
+                  ? AboutMe()
+                  : state.selectedItem == 1
+                  ? ExperienceTimeline()
+                  : state.selectedItem == 2
+                  ? ExperienceTimeline()
+                  : BlogPage();
             },
           ),
         ],
