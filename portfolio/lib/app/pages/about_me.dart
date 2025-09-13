@@ -111,15 +111,15 @@ class _AboutMeState extends State<AboutMe> {
           ),
           Scrollbar(
             controller: _controller,
-            thumbVisibility: true, // Always show scrollbar
+            thumbVisibility: true,
             trackVisibility: true,
-            scrollbarOrientation:
-                ScrollbarOrientation.bottom, // 👈 Bottom scrollbar
+            scrollbarOrientation: ScrollbarOrientation.bottom,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 20),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProjectProudOf(
                       logo: AppConstats.project1,

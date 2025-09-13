@@ -17,8 +17,12 @@ class _MainTitleState extends State<MainTitle> {
     return Padding(
       padding: const EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: TextStyling().mainTitle),
+          Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(widget.title, style: TextStyling().mainTitle),
+          ),
           Container(
             height: 10,
             margin: EdgeInsets.only(top: 10, left: 20),

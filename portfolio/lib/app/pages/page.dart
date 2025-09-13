@@ -28,19 +28,28 @@ class _PageIndexState extends State<PageIndex> {
               BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (context, state) {
                   return MainTitle(
-                    title: state.selectedItem == 0 ? "About Me" : "Experience",
+                    title:
+                        state.selectedItem == 0
+                            ? "About Me"
+                            : state.selectedItem == 1
+                            ? "Experience"
+                            : state.selectedItem == 2
+                            ? "Work"
+                            : "Blog",
                   );
                 },
               ),
               TitleNames(),
             ],
           ),
-
+          // BlogPage(),
           BlocBuilder<NavigationBloc, NavigationState>(
             builder: (context, state) {
               return state.selectedItem == 0
                   ? AboutMe()
                   : state.selectedItem == 1
+                  ? ExperienceTimeline()
+                  : state.selectedItem == 2
                   ? ExperienceTimeline()
                   : BlogPage();
             },
