@@ -43,18 +43,18 @@ class _PageIndexState extends State<PageIndex> {
               TitleNames(),
             ],
           ),
-          WorkPage(),
-          // BlocBuilder<NavigationBloc, NavigationState>(
-          //   builder: (context, state) {
-          //     return state.selectedItem == 0
-          //         ? AboutMe()
-          //         : state.selectedItem == 1
-          //         ? ExperienceTimeline()
-          //         : state.selectedItem == 2
-          //         ? WorkPage()
-          //         : BlogPage();
-          //   },
-          // ),
+          // WorkPage(),
+          BlocBuilder<NavigationBloc, NavigationState>(
+            builder: (context, state) {
+              return state.selectedItem == 0
+                  ? AboutMe()
+                  : state.selectedItem == 1
+                  ? ExperienceTimeline()
+                  : state.selectedItem == 2
+                  ? WorkPage()
+                  : BlogPage();
+            },
+          ),
         ],
       ),
     );
