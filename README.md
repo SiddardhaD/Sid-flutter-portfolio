@@ -1,7 +1,7 @@
 # Sid-flutter-portfolio
 A modern personal portfolio website built with Flutter Web, showcasing my skills, projects, and experience as a Flutter Developer.
 
-![Home Screenshot](https://raw.githubusercontent.com/SiddardhaD/SiddardhaD/blob/main/home.png)
+![Home Screenshot](https://raw.githubusercontent.com/SiddardhaD/SiddardhaD/refs/heads/main/home.png)
 
 
 Flutter 3.29.2 • channel stable • https://github.com/flutter/flutter.git</br>
