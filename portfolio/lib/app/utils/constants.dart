@@ -51,6 +51,9 @@ class AppConstats {
   static const String blog2 = "assets/images/blog/blog2.png";
   static const String blog3 = "assets/images/blog/blog3.png";
 
+  //work
+  static const String work1 = "assets/images/work/work1.png";
+
   //Colors
   static const Color eerieBlack = Color(0XFF1E1E1F);
   static const Color onyx = Color(0XFF383838);
@@ -85,6 +88,7 @@ Over the last 4+ years, I transitioned into mobile and web application developme
   static const String skills = "Skills";
   static const String proudOf = "Code Turned Into Products";
   static const String caption = "From lines of code to products people love.";
+  static const String featureWork = "Featured Project";
 
   //skills
   static const String flutter = "Flutter";

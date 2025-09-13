@@ -5,6 +5,7 @@ import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/pages/about_me.dart';
 import 'package:portfolio/app/pages/blog_page.dart';
 import 'package:portfolio/app/pages/experience.dart';
+import 'package:portfolio/app/pages/work_page.dart';
 import 'package:portfolio/app/widgets/main_title.dart';
 import 'package:portfolio/app/widgets/title_names.dart';
 
@@ -34,7 +35,7 @@ class _PageIndexState extends State<PageIndex> {
                             : state.selectedItem == 1
                             ? "Experience"
                             : state.selectedItem == 2
-                            ? "Work"
+                            ? "Rapid Prototypes"
                             : "Blog",
                   );
                 },
@@ -42,18 +43,18 @@ class _PageIndexState extends State<PageIndex> {
               TitleNames(),
             ],
           ),
-          // BlogPage(),
-          BlocBuilder<NavigationBloc, NavigationState>(
-            builder: (context, state) {
-              return state.selectedItem == 0
-                  ? AboutMe()
-                  : state.selectedItem == 1
-                  ? ExperienceTimeline()
-                  : state.selectedItem == 2
-                  ? ExperienceTimeline()
-                  : BlogPage();
-            },
-          ),
+          WorkPage(),
+          // BlocBuilder<NavigationBloc, NavigationState>(
+          //   builder: (context, state) {
+          //     return state.selectedItem == 0
+          //         ? AboutMe()
+          //         : state.selectedItem == 1
+          //         ? ExperienceTimeline()
+          //         : state.selectedItem == 2
+          //         ? WorkPage()
+          //         : BlogPage();
+          //   },
+          // ),
         ],
       ),
     );
