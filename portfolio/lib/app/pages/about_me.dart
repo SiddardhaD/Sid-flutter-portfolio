@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:portfolio/app/utils/styles.dart';
+import 'package:portfolio/core/base/responsive_utils.dart';
 
 class AboutMe extends StatefulWidget {
   const AboutMe({super.key});
@@ -47,9 +48,9 @@ class _AboutMeState extends State<AboutMe> {
             padding: EdgeInsets.only(bottom: 20),
             child: Row(
               children: [
-                CareerNumbers(number: "+3", label: AppConstats.experience),
+                CareerNumbers(number: "+6", label: AppConstats.experience),
                 CareerNumbers(number: "+15", label: AppConstats.projects),
-                CareerNumbers(number: "+4", label: AppConstats.appDeployments),
+                CareerNumbers(number: "+9", label: AppConstats.appDeployments),
               ],
             ),
           ),
@@ -109,51 +110,119 @@ class _AboutMeState extends State<AboutMe> {
             padding: EdgeInsets.only(top: 10, bottom: 40),
             child: Text(AppConstats.caption, style: TextStyling().careerFonts),
           ),
-          Scrollbar(
-            controller: _controller,
-            thumbVisibility: true,
-            trackVisibility: true,
-            scrollbarOrientation: ScrollbarOrientation.bottom,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProjectProudOf(
-                      logo: AppConstats.project1,
-                      image1: AppConstats.project1Image1,
-                      image2: AppConstats.project1Image2,
-                      label: AppConstats.project1Name,
-                      des: AppConstats.project1Des,
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Scrollbar(
+                // controller: _controller,
+                thumbVisibility: true,
+                trackVisibility: true,
+                scrollbarOrientation: ScrollbarOrientation.bottom,
+                child: SingleChildScrollView(
+                  controller: _controller,
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProjectProudOf(
+                          logo: AppConstats.project1,
+                          image1: AppConstats.project1Image1,
+                          image2: AppConstats.project1Image2,
+                          label: AppConstats.project1Name,
+                          des: AppConstats.project1Des,
+                        ),
+                        ProjectProudOf(
+                          logo: AppConstats.project2,
+                          image1: AppConstats.project2Image1,
+                          image2: AppConstats.project2Image2,
+                          label: AppConstats.project2Name,
+                          des: AppConstats.project2Des,
+                        ),
+                        ProjectProudOf(
+                          logo: AppConstats.project3,
+                          image1: AppConstats.project3Image1,
+                          image2: AppConstats.project3Image2,
+                          label: AppConstats.project3Name,
+                          des: AppConstats.project3Des,
+                        ),
+                        ProjectProudOf(
+                          logo: AppConstats.project4,
+                          image1: AppConstats.project4Image1,
+                          image2: AppConstats.project4Image2,
+                          label: AppConstats.project4Name,
+                          des: AppConstats.project4Des,
+                        ),
+                      ],
                     ),
-                    ProjectProudOf(
-                      logo: AppConstats.project2,
-                      image1: AppConstats.project2Image1,
-                      image2: AppConstats.project2Image2,
-                      label: AppConstats.project2Name,
-                      des: AppConstats.project2Des,
-                    ),
-                    ProjectProudOf(
-                      logo: AppConstats.project3,
-                      image1: AppConstats.project3Image1,
-                      image2: AppConstats.project3Image2,
-                      label: AppConstats.project3Name,
-                      des: AppConstats.project3Des,
-                    ),
-                    ProjectProudOf(
-                      logo: AppConstats.project4,
-                      image1: AppConstats.project4Image1,
-                      image2: AppConstats.project4Image2,
-                      label: AppConstats.project4Name,
-                      des: AppConstats.project4Des,
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              // Left Arrow
+              Positioned(
+                left: ResponsiveUtils.w(context, 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppConstats.onyx,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.3),
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: AppConstats.orangeYellow,
+                    ),
+                    onPressed: () {
+                      _controller.animateTo(
+                        _controller.offset - 300,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                  ),
+                ),
+              ),
+              // Right Arrow
+              Positioned(
+                right: ResponsiveUtils.w(context, 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppConstats.onyx,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.3),
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: AppConstats.orangeYellow,
+                    ),
+                    onPressed: () {
+                      _controller.animateTo(
+                        _controller.offset + 300,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
+          SizedBox(height: 100),
         ],
       ),
     );
@@ -229,7 +298,7 @@ class ProjectProudOf extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Container(
-      width: screenSize.width / 5,
+      width: ResponsiveUtils.w(context, 300),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       margin: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
@@ -238,12 +307,22 @@ class ProjectProudOf extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            children: [
-              Image.asset(logo, height: 40, width: 40),
-              SizedBox(width: 10),
-              Text(label, style: TextStyling().mainTitle),
-            ],
+          SizedBox(
+            width: ResponsiveUtils.w(context, 300),
+            child: Row(
+              children: [
+                Image.asset(logo, height: 40, width: 40),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: TextStyling().mainTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 20),
           ReadMoreText(des, style: TextStyling().careerFonts, trimLines: 4),

@@ -5,9 +5,17 @@ import 'package:portfolio/app/utils/styles.dart';
 class ExperienceTimeline extends StatelessWidget {
   final List<Map<String, dynamic>> experiences = [
     {
+      "role": "Lead Flutter Developer",
+      "company": "Prism Cloud Consulting | Client: Collectors Card",
+      "date": "Sept 2025 — Present",
+      "service": true,
+      "desc":
+          "Contributing to the Collectors Card mobile application by developing and maintaining features related to collector card management and real-time data synchronization. Implemented API models, Realm database models, and repository layers to handle card information efficiently. Integrated WebSocket events to synchronize collector card data in real time and ensured seamless UI updates using Riverpod state management. Collaborated with backend and product teams to optimize performance, resolve production issues, and deliver scalable, production-ready features across both Android and iOS platforms.",
+    },
+    {
       "role": "Sr Flutter Developer",
       "company": "Shervani Tech Hub Pvt Ltd (Payroll) | Client: WWT",
-      "date": "Mar 2025 — Present",
+      "date": "Mar 2025 — Sept 2025",
       "service": true,
       "desc":
           "Contributing to the Krispy Kreme Mobile Application, a flagship app for the USA-based doughnut brand, by implementing features like Auto-Apply Coupons to enhance checkout and increase conversions. Improved the Offers & Promotions UI to deliver a seamless and brand-consistent user experience, while collaborating with cross-functional teams to resolve critical bugs, optimize performance, and ensure production-ready releases. Actively involved in feature rollouts, app maintenance, and enhancements across both Android and iOS platforms.",

@@ -3,6 +3,8 @@ import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
 import 'dart:ui';
 
+import 'package:portfolio/core/base/responsive_utils.dart';
+
 class WorkPage extends StatefulWidget {
   const WorkPage({super.key});
 
@@ -27,6 +29,7 @@ class _WorkPageState extends State<WorkPage> {
     final screenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
+        height: ResponsiveUtils.h(context, 1000),
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         width: screenSize.width,
         child: Column(

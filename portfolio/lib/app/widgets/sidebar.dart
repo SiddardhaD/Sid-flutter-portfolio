@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
+import 'package:portfolio/core/base/responsive_utils.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({super.key});
@@ -180,18 +181,20 @@ class ProfileDetailCard extends StatelessWidget {
             ),
           ),
         ),
-
         SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: TextStyling().siderheading),
-            InkWell(
-              onTap: action,
-              child: Text(label, style: TextStyling().siderAnswer),
-            ),
-          ],
+        SizedBox(
+          width: ResponsiveUtils.w(context, 200),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: TextStyling().siderheading),
+              InkWell(
+                onTap: action,
+                child: Text(label, style: TextStyling().siderAnswer),
+              ),
+            ],
+          ),
         ),
       ],
     );

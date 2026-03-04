@@ -5,6 +5,7 @@ import 'package:portfolio/app/bloc/navigation/navigation_event.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
+import 'package:portfolio/core/base/responsive_utils.dart';
 
 class TitleNames extends StatefulWidget {
   const TitleNames({super.key});
@@ -16,9 +17,8 @@ class TitleNames extends StatefulWidget {
 class _TitleNamesState extends State<TitleNames> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Container(
-      width: screenSize.width * 0.2,
+      width: ResponsiveUtils.w(context, 400),
       height: 60,
       decoration: BoxDecoration(
         color: AppConstats.charlestonGreen,
