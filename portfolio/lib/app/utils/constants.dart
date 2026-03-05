@@ -100,3 +100,9 @@ Over the last 4+ years, I transitioned into mobile and web application developme
   static const String postman = "Postman";
   static const String xcode = "Xcode";
 }
+
+class AppUrls {
+  static const String linkedinUrl =
+      "https://www.linkedin.com/in/siddardha-devarayapalli-2616b1168/";
+  static const String githubUrl = "https://github.com/SiddardhaD";
+}

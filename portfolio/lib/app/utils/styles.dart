@@ -5,7 +5,7 @@ import 'package:portfolio/app/utils/constants.dart';
 class TextStyling {
   TextStyle userName = GoogleFonts.poppins(
     color: AppConstats.lotion,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.bold,
   );
   TextStyle userRole = GoogleFonts.poppins(

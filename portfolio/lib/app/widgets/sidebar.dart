@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
 import 'package:portfolio/core/base/responsive_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Container(
-      width: screenSize.width / 5,
-      height: screenSize.height / 1.2,
+      width: ResponsiveUtils.w(context, 300),
       decoration: BoxDecoration(
         color: AppConstats.eerieBlack,
         border: Border.all(color: AppConstats.onyx, width: 2),
@@ -24,6 +23,7 @@ class SideBar extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width / 20,
+              vertical: ResponsiveUtils.h(context, 10),
             ),
             decoration: BoxDecoration(
               color: AppConstats.onyx,
@@ -51,10 +51,22 @@ class SideBar extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text(AppConstats.username, style: TextStyling().userName),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveUtils.w(context, 20),
+            ),
+            child: Text(
+              AppConstats.username,
+              style: TextStyling().userName,
+              textAlign: TextAlign.center,
+            ),
+          ),
           const SizedBox(height: 5),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveUtils.w(context, 20),
+              vertical: ResponsiveUtils.h(context, 5),
+            ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: AppConstats.onyx,
@@ -62,12 +74,16 @@ class SideBar extends StatelessWidget {
             child: Text(AppConstats.userRole, style: TextStyling().userRole),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.02),
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveUtils.w(context, 20),
+            ),
             child: Divider(height: 40, color: AppConstats.onyx),
           ),
 
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(
+              horizontal: ResponsiveUtils.w(context, 10),
+            ),
             alignment: Alignment.center,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,15 +111,15 @@ class SideBar extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: screenSize.height / 12),
+          SizedBox(height: ResponsiveUtils.h(context, 120)),
           SizedBox(
-            width: screenSize.width / 16,
+            width: ResponsiveUtils.w(context, 160),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
                   onTap: () {
-                    debugPrint("Github");
+                    launchUrl(Uri.parse(AppUrls.githubUrl));
                   },
                   child: SizedBox(
                     height: 20,
@@ -116,7 +132,7 @@ class SideBar extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    debugPrint("Linkedin");
+                    launchUrl(Uri.parse(AppUrls.linkedinUrl));
                   },
                   child: SizedBox(
                     height: 20,
@@ -130,6 +146,7 @@ class SideBar extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: ResponsiveUtils.h(context, 20)),
         ],
       ),
     );

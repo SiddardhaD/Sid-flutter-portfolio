@@ -4,6 +4,7 @@ import 'package:portfolio/app/utils/constants.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:portfolio/app/utils/styles.dart';
 import 'package:portfolio/core/base/responsive_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutMe extends StatefulWidget {
   const AboutMe({super.key});
@@ -133,6 +134,9 @@ class _AboutMeState extends State<AboutMe> {
                           image2: AppConstats.project1Image2,
                           label: AppConstats.project1Name,
                           des: AppConstats.project1Des,
+                          appStoreUrl:
+                              "https://apps.apple.com/ua/app/vibhohcm-app/id6463864220",
+                          playStoreUrl: "",
                         ),
                         ProjectProudOf(
                           logo: AppConstats.project2,
@@ -140,6 +144,9 @@ class _AboutMeState extends State<AboutMe> {
                           image2: AppConstats.project2Image2,
                           label: AppConstats.project2Name,
                           des: AppConstats.project2Des,
+                          appStoreUrl: "",
+                          playStoreUrl:
+                              "https://play.google.com/store/apps/details?id=com.mooms.foood&hl=en_IN",
                         ),
                         ProjectProudOf(
                           logo: AppConstats.project3,
@@ -147,6 +154,9 @@ class _AboutMeState extends State<AboutMe> {
                           image2: AppConstats.project3Image2,
                           label: AppConstats.project3Name,
                           des: AppConstats.project3Des,
+                          appStoreUrl: "",
+                          playStoreUrl:
+                              "https://play.google.com/store/apps/details?id=com.momfoood.sellers&hl=en_IN",
                         ),
                         ProjectProudOf(
                           logo: AppConstats.project4,
@@ -154,6 +164,10 @@ class _AboutMeState extends State<AboutMe> {
                           image2: AppConstats.project4Image2,
                           label: AppConstats.project4Name,
                           des: AppConstats.project4Des,
+                          appStoreUrl:
+                              "https://apps.apple.com/us/app/krispy-kreme/id482752836",
+                          playStoreUrl:
+                              "https://play.google.com/store/apps/details?id=com.krispykreme.HotLights&hl=en_IN",
                         ),
                       ],
                     ),
@@ -285,6 +299,8 @@ class ProjectProudOf extends StatelessWidget {
   final String image2;
   final String label;
   final String des;
+  final String appStoreUrl;
+  final String playStoreUrl;
   const ProjectProudOf({
     super.key,
     required this.label,
@@ -292,6 +308,8 @@ class ProjectProudOf extends StatelessWidget {
     required this.image2,
     required this.logo,
     required this.des,
+    required this.appStoreUrl,
+    required this.playStoreUrl,
   });
 
   @override
@@ -329,59 +347,65 @@ class ProjectProudOf extends StatelessWidget {
           SizedBox(height: 20),
           Row(
             children: [
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppConstats.orangeYellow.withOpacity(0.6),
-                        offset: const Offset(-1, -1),
-                        blurRadius: 10,
-                      ),
-                      BoxShadow(
-                        color: AppConstats.blackOlive.withOpacity(0.1),
-                        offset: const Offset(0, 0),
-                        blurRadius: 10,
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    AppConstats.playstore,
-                    height: 30,
-                    width: 30,
-                    color: AppConstats.orangeYellow,
+              if (playStoreUrl.isNotEmpty)
+                InkWell(
+                  onTap: () {
+                    launchUrl(Uri.parse(playStoreUrl));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppConstats.orangeYellow.withOpacity(0.6),
+                          offset: const Offset(-1, -1),
+                          blurRadius: 10,
+                        ),
+                        BoxShadow(
+                          color: AppConstats.blackOlive.withOpacity(0.1),
+                          offset: const Offset(0, 0),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      AppConstats.playstore,
+                      height: 30,
+                      width: 30,
+                      color: AppConstats.orangeYellow,
+                    ),
                   ),
                 ),
-              ),
               SizedBox(width: 10),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppConstats.orangeYellow.withOpacity(0.6),
-                        offset: const Offset(-1, -1),
-                        blurRadius: 10,
-                      ),
-                      BoxShadow(
-                        color: AppConstats.blackOlive.withOpacity(0.1),
-                        offset: const Offset(0, 0),
-                        blurRadius: 10,
-                      ),
-                    ],
-                  ),
-                  child: Image.asset(
-                    AppConstats.appstore,
-                    height: 30,
-                    width: 30,
-                    color: AppConstats.orangeYellow,
+              if (appStoreUrl.isNotEmpty)
+                InkWell(
+                  onTap: () {
+                    launchUrl(Uri.parse(appStoreUrl));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppConstats.orangeYellow.withOpacity(0.6),
+                          offset: const Offset(-1, -1),
+                          blurRadius: 10,
+                        ),
+                        BoxShadow(
+                          color: AppConstats.blackOlive.withOpacity(0.1),
+                          offset: const Offset(0, 0),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      AppConstats.appstore,
+                      height: 30,
+                      width: 30,
+                      color: AppConstats.orangeYellow,
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
           Container(
