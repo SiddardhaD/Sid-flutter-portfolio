@@ -63,93 +63,138 @@ class _BlogPageState extends State<BlogPage> {
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        width: screenSize.width / 1.5,
-        child: Wrap(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            for (int i = 0; i < 3; i++) ...[
-              InkWell(
-                onTap: () {
-                  final Uri url = Uri.parse(data[i]["link"]);
-                  _launchUrl(url);
-                },
-                child: Container(
-                  width: screenSize.width * 0.25,
-                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: AppConstats.charlestonGreen,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                        ),
-                        child: MouseRegion(
-                          onEnter:
-                              (_) => setState(() => _isHoveredList[i] = true),
-                          onExit:
-                              (_) => setState(() => _isHoveredList[i] = false),
-                          child: AnimatedScale(
-                            scale:
-                                _isHoveredList[i]
+            LayoutBuilder(
+          builder: (context, constraints) {
+            final columns = constraints.maxWidth > 900
+                ? 3
+                : (constraints.maxWidth > 560 ? 2 : 1);
+            const spacing = 20.0;
+            final cardWidth =
+                (constraints.maxWidth - spacing * (columns - 1)) / columns;
+            return Wrap(
+              spacing: spacing,
+              runSpacing: spacing,
+              children: [
+                for (int i = 0; i < data.length; i++) ...[
+                  InkWell(
+                    onTap: () {
+                      final Uri url = Uri.parse(data[i]["link"]);
+                      _launchUrl(url);
+                    },
+                    child: Container(
+                      width: cardWidth,
+                      decoration: BoxDecoration(
+                        color: AppConstats.charlestonGreen,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
+                            child: MouseRegion(
+                              onEnter: (_) =>
+                                  setState(() => _isHoveredList[i] = true),
+                              onExit: (_) =>
+                                  setState(() => _isHoveredList[i] = false),
+                              child: AnimatedScale(
+                                scale: _isHoveredList[i]
                                     ? 1.05
                                     : 1.0, // zoom in 5% on hover
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                            child: Image.asset(
-                              data[i]["image"],
-                              fit: BoxFit.cover,
-                              height: screenSize.height * 0.28,
-                              width: screenSize.width,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                                child: Image.asset(
+                                  data[i]["image"],
+                                  fit: BoxFit.cover,
+                                  height: screenSize.height * 0.28,
+                                  width: cardWidth,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 15),
-                        child: Text(
-                          DateFormat(
-                            "dd MMM yy",
-                          ).format(DateTime.parse(data[i]["date"])),
-                          style: TextStyling().siderheading.copyWith(
-                            fontSize: 14,
-                            color: AppConstats.orangeYellow,
-                            fontWeight: FontWeight.w200,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              left: 15,
+                            ),
+                            child: Text(
+                              DateFormat(
+                                "dd MMM yy",
+                              ).format(DateTime.parse(data[i]["date"])),
+                              style: TextStyling().siderheading.copyWith(
+                                fontSize: 14,
+                                color: AppConstats.orangeYellow,
+                                fontWeight: FontWeight.w200,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, left: 15),
-                        child: Text(
-                          data[i]["title"],
-                          style: TextStyling().mainTitle.copyWith(
-                            fontSize: 18,
-                            color:
-                                _isHoveredList[i] == true
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              left: 15,
+                              right: 15,
+                            ),
+                            child: Text(
+                              data[i]["title"],
+                              style: TextStyling().mainTitle.copyWith(
+                                fontSize: 18,
+                                color: _isHoveredList[i] == true
                                     ? AppConstats.orangeYellow
                                     : AppConstats.lotion,
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              left: 15,
+                              right: 15,
+                              bottom: 10,
+                            ),
+                            child: Text(
+                              data[i]["des"],
+                              style: TextStyling().careerFonts.copyWith(),
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8.0,
-                          left: 15,
-                          bottom: 10,
-                        ),
-                        child: Text(
-                          data[i]["des"],
-                          style: TextStyling().careerFonts.copyWith(),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
+              ],
+            );
+          },
+        ),
+            const SizedBox(height: 30),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AppConstats.charlestonGreen,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: AppConstats.onyx, width: 1),
               ),
-            ],
+              child: Row(
+                children: [
+                  Icon(Icons.auto_stories_outlined,
+                      color: AppConstats.orangeYellow, size: 18),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      "More articles coming soon.",
+                      style: TextStyling().careerFonts,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

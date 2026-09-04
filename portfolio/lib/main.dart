@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Siddardha Devarayapalli',
+      title: 'Siddardha Devarayapalli | Senior Flutter Engineer',
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [

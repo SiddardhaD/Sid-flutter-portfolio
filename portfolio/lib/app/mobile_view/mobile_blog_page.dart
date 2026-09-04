@@ -156,6 +156,31 @@ class _MobileBlogPageState extends State<MobileBlogPage> {
               ),
             ),
           ],
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppConstats.charlestonGreen,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppConstats.onyx, width: 1),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.auto_stories_outlined,
+                  color: AppConstats.orangeYellow,
+                  size: 16,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    "More articles coming soon.",
+                    style: TextStyling().careerFonts.copyWith(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

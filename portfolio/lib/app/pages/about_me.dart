@@ -3,22 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:portfolio/app/utils/styles.dart';
-import 'package:portfolio/core/base/responsive_utils.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/app/widgets/common_widgets.dart';
 
-class AboutMe extends StatefulWidget {
+class AboutMe extends StatelessWidget {
   const AboutMe({super.key});
 
   @override
-  State<AboutMe> createState() => _AboutMeState();
-}
-
-class _AboutMeState extends State<AboutMe> {
-  final ScrollController _controller = ScrollController();
-  @override
   Widget build(BuildContext context) {
+    final isNarrow = MediaQuery.of(context).size.width < 768;
     return Container(
-      padding: EdgeInsets.only(left: 40, right: 20),
+      padding: isNarrow
+          ? const EdgeInsets.symmetric(horizontal: 20)
+          : const EdgeInsets.only(left: 40, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +26,7 @@ class _AboutMeState extends State<AboutMe> {
               p: GoogleFonts.inconsolata(
                 color: Colors.white,
                 fontSize: 16,
-                height: 1.5,
+                height: 1.6,
               ),
               strong: const TextStyle(
                 color: Colors.amber,
@@ -39,204 +35,52 @@ class _AboutMeState extends State<AboutMe> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 40),
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: Text(
               AppConstats.careerHighLight,
               style: TextStyling().titleNamesStyle.copyWith(fontSize: 18),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 20),
-            child: Row(
-              children: [
-                CareerNumbers(number: "+6", label: AppConstats.experience),
-                CareerNumbers(number: "+15", label: AppConstats.projects),
-                CareerNumbers(number: "+9", label: AppConstats.appDeployments),
-              ],
-            ),
+          Wrap(
+            spacing: 15,
+            runSpacing: 15,
+            children: [
+              for (final stat in careerStats)
+                CareerNumbers(number: stat.value, label: stat.label),
+            ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 40),
-            child: Text(
-              AppConstats.skills,
-              style: TextStyling().titleNamesStyle.copyWith(fontSize: 18),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: Row(
-                children: [
-                  SkillsName(
-                    image: AppConstats.flutterImage,
-                    label: AppConstats.flutter,
-                  ),
-                  SkillsName(
-                    image: AppConstats.androidImage,
-                    label: AppConstats.android,
-                  ),
-                  SkillsName(
-                    image: AppConstats.iosImage,
-                    label: AppConstats.ios,
-                  ),
-                  SkillsName(
-                    image: AppConstats.figmaImage,
-                    label: AppConstats.figma,
-                  ),
-                  SkillsName(
-                    image: AppConstats.firebaseImage,
-                    label: AppConstats.firebase,
-                  ),
-                  SkillsName(
-                    image: AppConstats.nodeImage,
-                    label: AppConstats.node,
-                  ),
-                  SkillsName(
-                    image: AppConstats.postmanImage,
-                    label: AppConstats.postman,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 36, bottom: 6),
             child: Text(
               AppConstats.proudOf,
               style: TextStyling().titleNamesStyle.copyWith(fontSize: 18),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 40),
+            padding: const EdgeInsets.only(bottom: 20),
             child: Text(AppConstats.caption, style: TextStyling().careerFonts),
           ),
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Scrollbar(
-                // controller: _controller,
-                thumbVisibility: true,
-                trackVisibility: true,
-                scrollbarOrientation: ScrollbarOrientation.bottom,
-                child: SingleChildScrollView(
-                  controller: _controller,
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ProjectProudOf(
-                          logo: AppConstats.project1,
-                          image1: AppConstats.project1Image1,
-                          image2: AppConstats.project1Image2,
-                          label: AppConstats.project1Name,
-                          des: AppConstats.project1Des,
-                          appStoreUrl:
-                              "https://apps.apple.com/ua/app/vibhohcm-app/id6463864220",
-                          playStoreUrl: "",
-                        ),
-                        ProjectProudOf(
-                          logo: AppConstats.project2,
-                          image1: AppConstats.project2Image1,
-                          image2: AppConstats.project2Image2,
-                          label: AppConstats.project2Name,
-                          des: AppConstats.project2Des,
-                          appStoreUrl: "",
-                          playStoreUrl:
-                              "https://play.google.com/store/apps/details?id=com.mooms.foood&hl=en_IN",
-                        ),
-                        ProjectProudOf(
-                          logo: AppConstats.project3,
-                          image1: AppConstats.project3Image1,
-                          image2: AppConstats.project3Image2,
-                          label: AppConstats.project3Name,
-                          des: AppConstats.project3Des,
-                          appStoreUrl: "",
-                          playStoreUrl:
-                              "https://play.google.com/store/apps/details?id=com.momfoood.sellers&hl=en_IN",
-                        ),
-                        ProjectProudOf(
-                          logo: AppConstats.project4,
-                          image1: AppConstats.project4Image1,
-                          image2: AppConstats.project4Image2,
-                          label: AppConstats.project4Name,
-                          des: AppConstats.project4Des,
-                          appStoreUrl:
-                              "https://apps.apple.com/us/app/krispy-kreme/id482752836",
-                          playStoreUrl:
-                              "https://play.google.com/store/apps/details?id=com.krispykreme.HotLights&hl=en_IN",
-                        ),
-                      ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final columns = constraints.maxWidth > 760 ? 2 : 1;
+              const spacing = 16.0;
+              final cardWidth = columns == 1
+                  ? constraints.maxWidth
+                  : (constraints.maxWidth - spacing) / columns;
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: [
+                  for (final item in whatIBring)
+                    SizedBox(
+                      width: cardWidth,
+                      child: BringCard(item: item),
                     ),
-                  ),
-                ),
-              ),
-              // Left Arrow
-              Positioned(
-                left: ResponsiveUtils.w(context, 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppConstats.onyx,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios_new,
-                      color: AppConstats.orangeYellow,
-                    ),
-                    onPressed: () {
-                      _controller.animateTo(
-                        _controller.offset - 300,
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                  ),
-                ),
-              ),
-              // Right Arrow
-              Positioned(
-                right: ResponsiveUtils.w(context, 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppConstats.onyx,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: AppConstats.orangeYellow,
-                    ),
-                    onPressed: () {
-                      _controller.animateTo(
-                        _controller.offset + 300,
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ],
+                ],
+              );
+            },
           ),
-          SizedBox(height: 100),
+          const SizedBox(height: 60),
         ],
       ),
     );
@@ -250,12 +94,25 @@ class CareerNumbers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+    return Container(
+      constraints: const BoxConstraints(minWidth: 150),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      decoration: BoxDecoration(
+        color: AppConstats.onyx,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(number, style: TextStyling().mainTitle.copyWith(fontSize: 20)),
+          Text(
+            number,
+            style: TextStyling().mainTitle.copyWith(
+              fontSize: 20,
+              color: AppConstats.orangeYellow,
+            ),
+          ),
+          const SizedBox(height: 4),
           Text(label, style: TextStyling().careerFonts),
         ],
       ),
@@ -263,219 +120,36 @@ class CareerNumbers extends StatelessWidget {
   }
 }
 
-class SkillsName extends StatelessWidget {
-  final String image;
-  final String label;
-  const SkillsName({super.key, required this.label, required this.image});
+class BringCard extends StatelessWidget {
+  final BringItem item;
+  const BringCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      margin: const EdgeInsets.only(right: 15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppConstats.onyx,
-      ),
+    return GlassCard(
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            image,
-            height: 25,
-            width: 25,
-            color: AppConstats.orangeYellow,
+          Text(
+            item.index,
+            style: TextStyling().mainTitle.copyWith(
+              fontSize: 20,
+              color: AppConstats.orangeYellow,
+            ),
           ),
-          SizedBox(width: 10),
-          Text(label, style: TextStyling().titleNamesStyle),
-        ],
-      ),
-    );
-  }
-}
-
-class ProjectProudOf extends StatelessWidget {
-  final String logo;
-  final String image1;
-  final String image2;
-  final String label;
-  final String des;
-  final String appStoreUrl;
-  final String playStoreUrl;
-  const ProjectProudOf({
-    super.key,
-    required this.label,
-    required this.image1,
-    required this.image2,
-    required this.logo,
-    required this.des,
-    required this.appStoreUrl,
-    required this.playStoreUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    return Container(
-      width: ResponsiveUtils.w(context, 300),
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      margin: const EdgeInsets.only(right: 15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppConstats.onyx,
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            width: ResponsiveUtils.w(context, 300),
-            child: Row(
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(logo, height: 40, width: 40),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    label,
-                    style: TextStyling().mainTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
+                Text(item.title, style: TextStyling().sectionHeading.copyWith(fontSize: 14)),
+                const SizedBox(height: 6),
+                Text(item.desc, style: TextStyling().careerFonts.copyWith(fontSize: 12)),
               ],
             ),
           ),
-          SizedBox(height: 20),
-          ReadMoreText(des, style: TextStyling().careerFonts, trimLines: 4),
-          SizedBox(height: 20),
-          Row(
-            children: [
-              if (playStoreUrl.isNotEmpty)
-                InkWell(
-                  onTap: () {
-                    launchUrl(Uri.parse(playStoreUrl));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppConstats.orangeYellow.withOpacity(0.6),
-                          offset: const Offset(-1, -1),
-                          blurRadius: 10,
-                        ),
-                        BoxShadow(
-                          color: AppConstats.blackOlive.withOpacity(0.1),
-                          offset: const Offset(0, 0),
-                          blurRadius: 10,
-                        ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      AppConstats.playstore,
-                      height: 30,
-                      width: 30,
-                      color: AppConstats.orangeYellow,
-                    ),
-                  ),
-                ),
-              SizedBox(width: 10),
-              if (appStoreUrl.isNotEmpty)
-                InkWell(
-                  onTap: () {
-                    launchUrl(Uri.parse(appStoreUrl));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppConstats.orangeYellow.withOpacity(0.6),
-                          offset: const Offset(-1, -1),
-                          blurRadius: 10,
-                        ),
-                        BoxShadow(
-                          color: AppConstats.blackOlive.withOpacity(0.1),
-                          offset: const Offset(0, 0),
-                          blurRadius: 10,
-                        ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      AppConstats.appstore,
-                      height: 30,
-                      width: 30,
-                      color: AppConstats.orangeYellow,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          Container(
-            height: screenSize.height / 2,
-            padding: EdgeInsets.only(top: 20),
-            child: Image.asset(image1),
-          ),
         ],
       ),
-    );
-  }
-}
-
-class ReadMoreText extends StatefulWidget {
-  final String text;
-  final TextStyle? style;
-  final int trimLines;
-
-  const ReadMoreText(this.text, {super.key, this.style, this.trimLines = 3});
-
-  @override
-  _ReadMoreTextState createState() => _ReadMoreTextState();
-}
-
-class _ReadMoreTextState extends State<ReadMoreText> {
-  bool _readMore = true;
-
-  @override
-  Widget build(BuildContext context) {
-    final defaultStyle = widget.style ?? const TextStyle(fontSize: 14);
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final span = TextSpan(text: widget.text, style: defaultStyle);
-        final tp = TextPainter(
-          text: span,
-          maxLines: widget.trimLines,
-          textDirection: TextDirection.ltr,
-        )..layout(maxWidth: constraints.maxWidth);
-
-        final exceeded = tp.didExceedMaxLines;
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.text,
-              style: defaultStyle,
-              maxLines: _readMore ? widget.trimLines : null,
-              overflow:
-                  _readMore ? TextOverflow.ellipsis : TextOverflow.visible,
-              textAlign: TextAlign.justify,
-            ),
-            if (exceeded)
-              InkWell(
-                onTap: () => setState(() => _readMore = !_readMore),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    _readMore ? "Read more" : "Read less",
-                    style: defaultStyle.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        );
-      },
     );
   }
 }

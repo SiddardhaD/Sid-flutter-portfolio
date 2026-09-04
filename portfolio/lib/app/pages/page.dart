@@ -3,9 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_bloc.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/pages/about_me.dart';
+import 'package:portfolio/app/pages/ai_page.dart';
 import 'package:portfolio/app/pages/blog_page.dart';
+import 'package:portfolio/app/pages/contact_page.dart';
 import 'package:portfolio/app/pages/experience.dart';
+import 'package:portfolio/app/pages/skills_page.dart';
 import 'package:portfolio/app/pages/work_page.dart';
+import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/widgets/main_title.dart';
 import 'package:portfolio/app/widgets/title_names.dart';
 
@@ -26,33 +30,34 @@ class _PageIndexState extends State<PageIndex> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BlocBuilder<NavigationBloc, NavigationState>(
-                builder: (context, state) {
-                  return MainTitle(
-                    title:
-                        state.selectedItem == 0
-                            ? "About Me"
-                            : state.selectedItem == 1
-                            ? "Experience"
-                            : state.selectedItem == 2
-                            ? "Rapid Prototypes"
-                            : "Blog",
-                  );
-                },
+              Expanded(
+                child: BlocBuilder<NavigationBloc, NavigationState>(
+                  builder: (context, state) {
+                    return MainTitle(title: navPageTitles[state.selectedItem]);
+                  },
+                ),
               ),
-              TitleNames(),
+              const TitleNames(),
             ],
           ),
-          // WorkPage(),
           BlocBuilder<NavigationBloc, NavigationState>(
             builder: (context, state) {
-              return state.selectedItem == 0
-                  ? AboutMe()
-                  : state.selectedItem == 1
-                  ? ExperienceTimeline()
-                  : state.selectedItem == 2
-                  ? WorkPage()
-                  : BlogPage();
+              switch (state.selectedItem) {
+                case 0:
+                  return const AboutMe();
+                case 1:
+                  return ExperienceTimeline();
+                case 2:
+                  return const SkillsPage();
+                case 3:
+                  return const WorkPage();
+                case 4:
+                  return const AiPage();
+                case 5:
+                  return const BlogPage();
+                default:
+                  return const ContactPage();
+              }
             },
           ),
         ],

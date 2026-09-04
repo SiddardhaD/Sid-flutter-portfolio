@@ -5,20 +5,14 @@ import 'package:portfolio/app/bloc/navigation/navigation_event.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
-import 'package:portfolio/core/base/responsive_utils.dart';
 
-class TitleNames extends StatefulWidget {
+class TitleNames extends StatelessWidget {
   const TitleNames({super.key});
 
   @override
-  State<TitleNames> createState() => _TitleNamesState();
-}
-
-class _TitleNamesState extends State<TitleNames> {
-  @override
   Widget build(BuildContext context) {
     return Container(
-      width: ResponsiveUtils.w(context, 400),
+      constraints: const BoxConstraints(maxWidth: 420, minWidth: 140),
       height: 60,
       decoration: BoxDecoration(
         color: AppConstats.charlestonGreen,
@@ -27,38 +21,21 @@ class _TitleNamesState extends State<TitleNames> {
           topRight: Radius.circular(25),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          NamesOfIndex(
-            index: 0,
-            ontap: () {
-              context.read<NavigationBloc>().add(NavigationItemSelected(0));
-            },
-            lable: "ABOUT ME",
-          ),
-          NamesOfIndex(
-            index: 1,
-            ontap: () {
-              context.read<NavigationBloc>().add(NavigationItemSelected(1));
-            },
-            lable: "EXPERIENCE",
-          ),
-          NamesOfIndex(
-            index: 2,
-            ontap: () {
-              context.read<NavigationBloc>().add(NavigationItemSelected(2));
-            },
-            lable: "WORK",
-          ),
-          NamesOfIndex(
-            index: 3,
-            ontap: () {
-              context.read<NavigationBloc>().add(NavigationItemSelected(3));
-            },
-            lable: "BLOG",
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: [
+            for (int i = 0; i < navLabels.length; i++)
+              NamesOfIndex(
+                index: i,
+                ontap: () {
+                  context.read<NavigationBloc>().add(NavigationItemSelected(i));
+                },
+                lable: navLabels[i],
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -93,7 +70,9 @@ class NamesOfIndex extends StatelessWidget {
                 lable,
                 style:
                     state.selectedItem == index
-                        ? TextStyling().titleNamesStyle
+                        ? TextStyling().titleNamesStyle.copyWith(
+                          color: AppConstats.orangeYellow,
+                        )
                         : TextStyling().aboutMe.copyWith(fontSize: 12),
               ),
             ),

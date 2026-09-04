@@ -11,7 +11,8 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFF121212), // dark theme
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [const SideBar(), const Maincontainer()],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [const SideBar(), const Expanded(child: Maincontainer())],
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:portfolio/app/bloc/navigation/navigation_event.dart';
 import 'package:portfolio/app/bloc/navigation/navigation_state.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
+import 'package:portfolio/app/widgets/common_widgets.dart';
 import 'package:portfolio/core/base/responsive_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -76,21 +77,65 @@ class MobileDrawer extends StatelessWidget {
                 child: Column(
                   children: [
                     DrawerNavItem(
-                      icon: Icons.person,
-                      title: "About Me",
+                      icon: Icons.person_outline,
+                      title: "About",
                       index: 0,
                     ),
                     DrawerNavItem(
-                      icon: Icons.work,
+                      icon: Icons.work_outline,
                       title: "Experience",
                       index: 1,
                     ),
                     DrawerNavItem(
-                      icon: Icons.code,
-                      title: "Rapid Prototypes",
+                      icon: Icons.bolt_outlined,
+                      title: "Skills",
                       index: 2,
                     ),
-                    DrawerNavItem(icon: Icons.article, title: "Blog", index: 3),
+                    DrawerNavItem(
+                      icon: Icons.grid_view_outlined,
+                      title: "Work",
+                      index: 3,
+                    ),
+                    DrawerNavItem(
+                      icon: Icons.auto_awesome_outlined,
+                      title: "AI",
+                      index: 4,
+                    ),
+                    DrawerNavItem(
+                      icon: Icons.article_outlined,
+                      title: "Blog",
+                      index: 5,
+                    ),
+                    DrawerNavItem(
+                      icon: Icons.mail_outline,
+                      title: "Contact",
+                      index: 6,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: CtaButton(
+                        label: "Download Resume",
+                        icon: Icons.download_outlined,
+                        filled: true,
+                        onTap: openResume,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: CtaButton(
+                        label: "View Cover Letter",
+                        icon: Icons.picture_as_pdf_outlined,
+                        onTap: openCoverLetter,
+                      ),
+                    ),
                   ],
                 ),
               ),

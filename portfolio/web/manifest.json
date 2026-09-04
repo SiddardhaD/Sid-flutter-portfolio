@@ -1,11 +1,11 @@
 {
-    "name": "portfolio",
-    "short_name": "portfolio",
+    "name": "Siddardha Devarayapalli | Senior Flutter Engineer",
+    "short_name": "Siddardha Devarayapalli",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#1E1E1F",
+    "theme_color": "#1E1E1F",
+    "description": "Senior / Lead Flutter Engineer with 7+ years of experience building production Android, iOS and Web applications using Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

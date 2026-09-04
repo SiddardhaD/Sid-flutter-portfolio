@@ -43,6 +43,22 @@ class TextStyling {
     fontSize: 14,
     fontWeight: FontWeight.w300,
   );
+  TextStyle subtitle = GoogleFonts.inconsolata(
+    color: AppConstats.quickSilver,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+  );
+  TextStyle sectionHeading = GoogleFonts.poppins(
+    color: AppConstats.lotion,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+  TextStyle chip = GoogleFonts.poppins(
+    color: AppConstats.lotion,
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 class Decorations {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/utils/constants.dart';
 import 'package:portfolio/app/utils/styles.dart';
+import 'package:portfolio/app/widgets/common_widgets.dart';
 import 'package:portfolio/core/base/responsive_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,137 +18,192 @@ class SideBar extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(25)),
       ),
       margin: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width / 20,
-              vertical: ResponsiveUtils.h(context, 10),
-            ),
-            decoration: BoxDecoration(
-              color: AppConstats.onyx,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: Image.asset(AppConstats.profile),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                      color: AppConstats.neonGreen,
-                      shape: BoxShape.circle,
+      clipBehavior: Clip.antiAlias,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width / 20,
+                        vertical: ResponsiveUtils.h(context, 10),
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppConstats.onyx,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Image.asset(AppConstats.profile),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                color: AppConstats.neonGreen,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveUtils.w(context, 20),
-            ),
-            child: Text(
-              AppConstats.username,
-              style: TextStyling().userName,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const SizedBox(height: 5),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveUtils.w(context, 20),
-              vertical: ResponsiveUtils.h(context, 5),
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppConstats.onyx,
-            ),
-            child: Text(AppConstats.userRole, style: TextStyling().userRole),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveUtils.w(context, 20),
-            ),
-            child: Divider(height: 40, color: AppConstats.onyx),
-          ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                      ),
+                      child: Text(
+                        AppConstats.username,
+                        style: TextStyling().userName,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                        vertical: ResponsiveUtils.h(context, 5),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppConstats.onyx,
+                      ),
+                      child: Text(
+                        AppConstats.userRole,
+                        style: TextStyling().userRole,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                      ),
+                      child: Text(
+                        AppConstats.userSubtitle,
+                        textAlign: TextAlign.center,
+                        style: TextStyling().subtitle,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                      ),
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          CtaButton(
+                            label: "Resume",
+                            icon: Icons.download_outlined,
+                            filled: true,
+                            onTap: openResume,
+                          ),
+                          CtaButton(
+                            label: "Contact",
+                            icon: Icons.mail_outline,
+                            onTap: () => openUrl(AppUrls.mailtoUrl),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                      ),
+                      child: Divider(height: 40, color: AppConstats.onyx),
+                    ),
 
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: ResponsiveUtils.w(context, 10),
-            ),
-            alignment: Alignment.center,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProfileDetailCard(
-                  title: AppConstats.email,
-                  icon: Icons.email,
-                  label: AppConstats.userEmail,
-                  action: () {},
-                ),
-                SizedBox(height: 10),
-                ProfileDetailCard(
-                  title: AppConstats.phone,
-                  icon: Icons.phone,
-                  label: AppConstats.userphone,
-                  action: () {},
-                ),
-                SizedBox(height: 10),
-                ProfileDetailCard(
-                  title: AppConstats.location,
-                  icon: Icons.location_on,
-                  label: AppConstats.userlocation,
-                  action: () {},
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: ResponsiveUtils.h(context, 120)),
-          SizedBox(
-            width: ResponsiveUtils.w(context, 160),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InkWell(
-                  onTap: () {
-                    launchUrl(Uri.parse(AppUrls.githubUrl));
-                  },
-                  child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: Image.asset(
-                      AppConstats.github,
-                      color: AppConstats.quickSilver,
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 10),
+                      ),
+                      alignment: Alignment.center,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProfileDetailCard(
+                            title: AppConstats.email,
+                            icon: Icons.email,
+                            label: AppConstats.userEmail,
+                            action: () {},
+                          ),
+                          SizedBox(height: 10),
+                          ProfileDetailCard(
+                            title: AppConstats.phone,
+                            icon: Icons.phone,
+                            label: AppConstats.userphone,
+                            action: () {},
+                          ),
+                          SizedBox(height: 10),
+                          ProfileDetailCard(
+                            title: AppConstats.location,
+                            icon: Icons.location_on,
+                            label: AppConstats.userlocation,
+                            action: () {},
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    launchUrl(Uri.parse(AppUrls.linkedinUrl));
-                  },
-                  child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: Image.asset(
-                      AppConstats.linkedin,
-                      color: AppConstats.quickSilver,
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveUtils.w(context, 20),
+                      ),
+                      child: Divider(height: 30, color: AppConstats.onyx),
                     ),
-                  ),
+                    SizedBox(
+                      width: ResponsiveUtils.w(context, 160),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              launchUrl(Uri.parse(AppUrls.githubUrl));
+                            },
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: Image.asset(
+                                AppConstats.github,
+                                color: AppConstats.quickSilver,
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              launchUrl(Uri.parse(AppUrls.linkedinUrl));
+                            },
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: Image.asset(
+                                AppConstats.linkedin,
+                                color: AppConstats.quickSilver,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: ResponsiveUtils.h(context, 20)),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-          SizedBox(height: ResponsiveUtils.h(context, 20)),
-        ],
+          );
+        },
       ),
     );
   }

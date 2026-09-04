@@ -20,8 +20,13 @@ class _MainTitleState extends State<MainTitle> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: Text(widget.title, style: TextStyling().mainTitle),
+            padding: EdgeInsets.only(left: 20, right: 10),
+            child: Text(
+              widget.title,
+              style: TextStyling().mainTitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           Container(
             height: 10,

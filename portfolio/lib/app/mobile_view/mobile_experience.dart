@@ -6,51 +6,51 @@ class MobileExperienceTimeline extends StatelessWidget {
   final List<Map<String, dynamic>> experiences = [
     {
       "role": "Lead Flutter Developer",
-      "company": "Prism Cloud Consulting | Client: Collectors Card",
+      "company": "Novizco Infotech",
       "date": "Sept 2025 — Present",
       "service": true,
       "desc":
-          "Contributing to the Collectors Card mobile application by developing and maintaining features related to collector card management and real-time data synchronization. Implemented API models, Realm database models, and repository layers to handle card information efficiently. Integrated WebSocket events to synchronize collector card data in real time and ensured seamless UI updates using Riverpod state management. Collaborated with backend and product teams to optimize performance, resolve production issues, and deliver scalable, production-ready features across both Android and iOS platforms.",
+          "Leading Flutter development for Android and iOS applications, working on the Collectors Card mobile application. Handling UI, architecture, API integration, state management, debugging and production issues. Integrated Firebase, Sentry, Amplitude and Unity, and manage Play Store, App Store and TestFlight releases. Working closely with Product, Backend, Design and QA teams to improve application stability and performance, and using Claude and Cursor for code analysis, debugging, refactoring and development productivity.",
     },
     {
-      "role": "Sr Flutter Developer",
-      "company": "Shervani Tech Hub Pvt Ltd (Payroll) | Client: WWT",
+      "role": "Flutter Developer",
+      "company": "Shervani Tech Hub Pvt Ltd | Client: WWT / Krispy Kreme",
       "date": "Mar 2025 — Sept 2025",
       "service": true,
       "desc":
-          "Contributing to the Krispy Kreme Mobile Application, a flagship app for the USA-based doughnut brand, by implementing features like Auto-Apply Coupons to enhance checkout and increase conversions. Improved the Offers & Promotions UI to deliver a seamless and brand-consistent user experience, while collaborating with cross-functional teams to resolve critical bugs, optimize performance, and ensure production-ready releases. Actively involved in feature rollouts, app maintenance, and enhancements across both Android and iOS platforms.",
+          "Worked on the Krispy Kreme mobile application, developing and maintaining Flutter features including Auto-Apply Coupons, Offers and Promotions. Fixed production issues, improved application stability, collaborated with cross-functional teams and supported mobile releases.",
     },
     {
-      "role": "Associate Tech Lead & Flutter Developer",
-      "company": "Ideyalbs",
-      "date": "Oct 2024 — Mar 2025",
+      "role": "Associate Tech Lead",
+      "company": "IdeyaLabs | Project: ChargeSavvy POS",
+      "date": "Nov 2024 — Mar 2025",
       "service": true,
       "desc":
-          "Spearheaded the development of ChargeSavvy, a comprehensive POS application for restaurants and clubs with advanced inventory, order, and payment management features. The app supports multi-role access, real-time data synchronization via APIs, and secure workflows.",
+          "Worked on ChargeSavvy, a restaurant and club POS application covering inventory, orders, tabs, merging/transfers, discounts and fees. Implemented PayLater and PreAuth payment workflows with real-time API synchronization and role-based functionality, with a focus on error handling and production-focused engineering.",
     },
     {
-      "role": "Flutter Developer",
+      "role": "Senior Flutter Developer",
       "company": "PhotonX Tech Pvt Ltd",
-      "date": "July 2023 — Aug 2024",
+      "date": "Jan 2023 — Aug 2024",
       "service": true,
       "desc":
-          "Led the development of multiple applications including Stellar HR, a self-service employee management app; EmpireAI, a trading platform with real-time analytics; and Vibho HCM, a human capital management tool (BLoC-based). Ensuring smooth UI/UX and robust backend integration. Also created QuickNews, a fast, multimedia-enabled news application designed for quick updates and simplicity.",
+          "Worked across multiple projects including Stellar HR, EmpireAI, Vibho HCM, Sunray Resort Mapping, MomsFoood and QuickNews, using Flutter, Dart, BLoC, GetX, MVC, Node.js, MongoDB, MySQL and AWS EC2.",
     },
     {
       "role": "Flutter Developer",
-      "company": "Infiyoda Solutions Pvt Ltd",
-      "date": "July 2021 — Dec 2022",
+      "company": "Infiyodha Solutions Pvt Ltd",
+      "date": "June 2021 — Dec 2022",
       "service": false,
       "desc":
-          "Developed Briscart Shopping App & WebApp, a unified shopping platform integrating multiple stores with advanced product search and referral features. Also built Konnect Homes, a SmartHome solution to control and schedule appliances, working on both frontend in Flutter and backend using Flask with MySQL.",
+          "Worked on Briscart and Konnect Homes using Flutter, Python Flask, MySQL, APIs and smart-home integrations.",
     },
     {
-      "role": "IOT Specialist",
+      "role": "IoT Specialist",
       "company": "Inforepos Pvt Ltd",
-      "date": "Jan 2019 — Jun 2021",
+      "date": "Jan 2019 — June 2021",
       "service": false,
       "desc":
-          "At Inforepos Pvt Ltd, I worked as an IoT Specialist contributing to the design and development of IoT-based agricultural solutions. One of the key projects was Simplifarms, an innovative smart farming product that integrates IoT devices with mobile applications for efficient agricultural management.",
+          "Worked on Simplifarms agricultural IoT systems with ESP controllers, sensors and field monitoring. Integrated hardware and software for irrigation and water-pumping systems, with a focus on real-time data and device control.",
     },
   ];
 
